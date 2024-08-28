@@ -6,11 +6,17 @@ import NavBar from "@/Components/NavBar.vue";
 import Footer from "@/Components/Footer.vue";
 
 defineProps({
-    canLogin: {
-        type: Boolean,
+    auth: {
+        type: Object,
     },
     canRegister: {
         type: Boolean,
+    },
+    canResetPassword: {
+        type: Boolean,
+    },
+    status: {
+        type: String,
     },
     laravelVersion: {
         type: String,
@@ -32,10 +38,13 @@ defineProps({
             <article class="sm:w-full">
                 <h2 class="w-auto text-4xl font-bold text-center sm:text-5xl sm:text-left text-gray-900">Welcome to Jettison</h2>
                 <p class="text-gray-900 text-xl mt-3">A forum for model and amateur rocket enthusiasts!</p>
-                <PrimaryButton class="mt-6">Go To Forum</PrimaryButton>
+                <PrimaryButton v-if="auth.user" class="mt-6">
+                    <a href="/forum">Go To Forum</a>
+                </PrimaryButton>
             </article>
             <div class="w-1/2">
-                <Login />
+                <img v-if="auth.user" src="/images/rocket.jpg" alt="Rocket Man"/>
+                <Login v-else :can-reset-password="canResetPassword" :status="status"/>
             </div>
         </section>
     </main>

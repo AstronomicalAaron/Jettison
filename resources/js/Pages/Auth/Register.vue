@@ -8,7 +8,8 @@ import Footer from "@/Components/Footer.vue";
 import NavBar from "@/Components/NavBar.vue";
 
 const form = useForm({
-    name: '',
+    first_name: '',
+    last_name: '',
     email: '',
     password: '',
     password_confirmation: '',
@@ -28,19 +29,35 @@ const submit = () => {
         <div class="w-full sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <form @submit.prevent="submit">
                 <div>
-                    <InputLabel for="name" value="Name" />
+                    <InputLabel for="first_name" value="First Name" />
 
                     <TextInput
-                        id="name"
+                        id="first-name"
                         type="text"
                         class="mt-1 block w-full"
-                        v-model="form.name"
+                        v-model="form.first_name"
                         required
                         autofocus
-                        autocomplete="name"
+                        autocomplete="first name"
                     />
 
-                    <InputError class="mt-2" :message="form.errors.name" />
+                    <InputError class="mt-2" :message="form.errors.first_name" />
+                </div>
+
+                <div>
+                    <InputLabel for="first_name" value="Last Name" />
+
+                    <TextInput
+                        id="last-name"
+                        type="text"
+                        class="mt-1 block w-full"
+                        v-model="form.last_name"
+                        required
+                        autofocus
+                        autocomplete="last name"
+                    />
+
+                    <InputError class="mt-2" :message="form.errors.last_name" />
                 </div>
 
                 <div class="mt-4">
